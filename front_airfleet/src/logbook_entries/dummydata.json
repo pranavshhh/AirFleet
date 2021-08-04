@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "pilot_name": "Pranav Shukla",
+        "flight_date": "2021-07-24",
+        "aircraft_icao": "A359",
+        "aircraft_reg": "N504DN",
+        "from_dest": "KDTW",
+        "to_dest": "EDDF"
+    },
+    {
+        "id": 2,
+        "pilot_name": "Yuri Gagarin",
+        "flight_date": "2021-07-24",
+        "aircraft_icao": "STS",
+        "aircraft_reg": "OV105",
+        "from_dest": "KTTS",
+        "to_dest": "KTTS"
+    },
+    {
+        "id": 3,
+        "pilot_name": "Oleksandr Halunenko",
+        "flight_date": "2021-07-29",
+        "aircraft_icao": "A225",
+        "aircraft_reg": "CCCP-82060",
+        "from_dest": "UUEE",
+        "to_dest": "KDTW"
+    }
+]
