@@ -3,33 +3,61 @@ import EntryDetail from './entrydetails';
 import axios from 'axios';
 
 class EntryList extends Component{
-
-    state = {
-        entryData:[],
+    constructor(props) {
+        super(props);
+        this.state = {
+            entryData: [],
+            entry: " ",
+            showComponent: false,
+        };
+        this.getEntryDetail = this.getEntryDetail.bind(this);
+        this.showEntryDetails = this.showEntryDetails.bind(this);  
     }
 
+    getEntryDetail(item){
+        axios
+            .get("http://127.0.0.1:8000".concat(item.absolute_url))
+            .then((response) => {
+                this.setState({ entry: response.data })
+                console.log("test");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    showEntryDetails(item){
+        this.getEntryDetail(item);
+        this.setState({ showComponent: true })
+    }
 
     componentDidMount(){
-        axios.get("http://127.0.0.1:8000")
-        .then((response) => {
-            this.setState({entryData: response.data})
-        })
-        .catch(function (error){
-            console.log(error)
-        })
+        axios
+            .get("http://127.0.0.1:8000")
+            .then((response) => {
+                this.setState({ entryData: response.data})
+            })
+            .catch(function (error){
+                console.log(error)
+            })
     }
 
     render(){
         return(
             <div>
-                {this.state.entryData.map( item => {
-                return <h3>{item.pilot_name}, {item.flight_date}, {item.aircraft_reg}
+                {this.state.entryData.map((item) => {
+                    return (
+                        <h3 key={item.id} onClick={() => this.showEntryDetails(item)}>
+                            {item.pilot_name}, {item.from_dest}, {item.to_dest}, {item.flight_date}
                 </h3>
+                    );
+                })}
 
-                        })
-                }
+                {this.state.showComponent ? (
+                    <EntryDetail entryDetail={this.state.entry} />
+                ) : null}
             </div>
-            )
+        )
     }
 }
 

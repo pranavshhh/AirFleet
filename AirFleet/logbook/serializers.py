@@ -1,5 +1,5 @@
 from django.db.models import fields
-from rest_framework import serializers
+from rest_framework import serializers, reverse
 from .models import entry
 
 class LogbookEntrySerializer(serializers.ModelSerializer):
@@ -38,3 +38,23 @@ class LogbookDetailSerializer(serializers.ModelSerializer):
             'remarks_and_endorsements',
             'picture_with_plane'
         ]
+
+class LogbookListSerializer(serializers.ModelSerializer):
+    absolute_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = entry
+        fields = [
+            'id',
+            'pilot_name',
+            'flight_date',
+            'aircraft_reg',
+            'aircraft_icao',
+            'from_dest',
+            'to_dest',
+            'duration',
+            'remarks_and_endorsements'
+        ]
+
+    def get_absolute_url(self, obj):
+        return reverse('entry_detail', args=(obj.pk,))
