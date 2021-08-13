@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EntryDetail from './entrydetails';
+import EntryDetail from './entrydetail';
 import axios from 'axios';
 
 class EntryList extends Component{
@@ -14,26 +14,25 @@ class EntryList extends Component{
         this.showEntryDetails = this.showEntryDetails.bind(this);  
     }
 
-    getEntryDetail(item){
+    getEntryDetail(item) {
         axios
             .get("http://127.0.0.1:8000".concat(item.absolute_url))
             .then((response) => {
                 this.setState({ entry: response.data })
-                console.log("test");
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
 
-    showEntryDetails(item){
+    showEntryDetails(item) {
         this.getEntryDetail(item);
         this.setState({ showComponent: true })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios
-            .get("http://127.0.0.1:8000")
+            .get("http://127.0.0.1:8000/")
             .then((response) => {
                 this.setState({ entryData: response.data})
             })
@@ -49,7 +48,7 @@ class EntryList extends Component{
                     return (
                         <h3 key={item.id} onClick={() => this.showEntryDetails(item)}>
                             {item.pilot_name}, {item.from_dest}, {item.to_dest}, {item.flight_date}
-                </h3>
+                        </h3>
                     );
                 })}
 
@@ -57,7 +56,7 @@ class EntryList extends Component{
                     <EntryDetail entryDetail={this.state.entry} />
                 ) : null}
             </div>
-        )
+        );
     }
 }
 
