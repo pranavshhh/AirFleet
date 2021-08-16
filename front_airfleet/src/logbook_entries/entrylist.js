@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EntryDetail from './entrydetail';
 import axios from 'axios';
+import EntryForm from './entryform'
 
 class EntryList extends Component{
     constructor(props) {
@@ -44,6 +45,8 @@ class EntryList extends Component{
     render(){
         return(
             <div>
+                <EntryForm></EntryForm>
+
                 {this.state.entryData.map((item) => {
                     return (
                         <h3 key={item.id} onClick={() => this.showEntryDetails(item)}>
