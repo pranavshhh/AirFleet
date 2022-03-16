@@ -1,6 +1,7 @@
 import logo from './plane.svg';
 import './App.css';
 import EntryList from './logbook_entries/entrylist';
+import React from 'react';
 
 function App() {
   return (

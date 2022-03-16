@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class EntryForm extends React.Component {
+class EntryForm extends Component {
     handleChange(event) {
         this.setState({[event.target.name]:event.target.value})
     }
@@ -17,7 +17,7 @@ class EntryForm extends React.Component {
                 console.log(response);
             })
             .catch(function (error) {
-                console.log(error)
+                console.log(error);
             })
     }
 
@@ -26,8 +26,8 @@ class EntryForm extends React.Component {
         this.state = {
             entry_name: " ",
         };
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {
@@ -36,10 +36,10 @@ class EntryForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input
-                    type="text"
-                    name="entry_name"
-                    value={entry_name}
-                    onChange={this.handleChange}
+                        type="text"
+                        name="entry_name"
+                        value={entry_name}
+                        onChange={this.handleChange} 
                     />
                 </div>
                 <input type="submit" value="Submit" />
