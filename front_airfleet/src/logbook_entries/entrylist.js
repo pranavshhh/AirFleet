@@ -45,7 +45,7 @@ class EntryList extends Component{
     render(){
         return(
             <div>
-                <EntryForm></EntryForm>
+                <EntryForm/>
 
                 {this.state.entryData.map((item) => {
                     return (
