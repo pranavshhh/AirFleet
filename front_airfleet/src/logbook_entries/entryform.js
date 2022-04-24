@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class EntryForm extends React.Component {
+class EntryForm extends Component {
     handleChange(event) {
-        this.setState({[event.target.name]:event.target.value});
+        this.setState({[event.target.name]:event.target.value})
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.pilot_name);
+        console.log(this.state.entry_name);
         axios
             .post("http://127.0.0.1:8000/create/", {
                 pilot_name: this.state.pilot_name
@@ -24,21 +24,21 @@ class EntryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pilot_name: " ",
+            entry_name: " ",
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {
-        const { pilot_name } = this.state;
+        const { entry_name } = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input
                         type="text"
-                        name="pilot_name"
-                        value={pilot_name}
+                        name="entry_name"
+                        value={entry_name}
                         onChange={this.handleChange} 
                     />
                 </div>
